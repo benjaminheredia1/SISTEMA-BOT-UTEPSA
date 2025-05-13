@@ -1,0 +1,88 @@
+<!-- formulario_edit_bot.html -->
+<div
+  class="flex flex-col min-h-screen w-72 bg-gray-50 border-r border-gray-200 px-6 py-8 shadow-sm text-gray-800"
+>
+  <!-- Logo -->
+  <div class="mb-10">
+    <div class="flex items-center space-x-3">
+      <h1 class="text-2xl font-bold tracking-tight">Editar Bot</h1>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="mb-6">
+    <p class="text-xs text-gray-400 uppercase tracking-wide">
+      Información del Bot
+    </p>
+    <form method="POST" action="{% url 'BotView'%}">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="Nombre" class="block text-sm font-medium text-gray-700"
+          >Nombre</label
+        >
+        <input
+          type="text"
+          id="Nombre"
+          name="Nombre"
+          class="mt-1 px-4 py-2 w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          value="{{ bot.Nombre }}"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="Token" class="block text-sm font-medium text-gray-700"
+          >Token</label
+        >
+        <input
+          type="text"
+          id="Token"
+          name="Token"
+          class="mt-1 px-4 py-2 w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          value="{{ bot.Token }}"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="Numero" class="block text-sm font-medium text-gray-700"
+          >Número</label
+        >
+        <input
+          type="text"
+          id="Numero"
+          name="Numero"
+          class="mt-1 px-4 py-2 w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          value="{{ bot.Numero }}"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="Activo" class="inline-flex items-center">
+          <input
+            type="checkbox"
+            id="Activo"
+            name="Activo"
+            class="rounded border-gray-300 text-blue-600 focus:ring focus:ring-blue-200"
+            {%
+            if
+            bot.Activo
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <span class="ml-2 text-sm text-gray-700">Activo</span>
+        </label>
+      </div>
+
+      <div class="mb-4">
+        <button
+          type="submit"
+          class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+        >
+          Guardar cambios
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

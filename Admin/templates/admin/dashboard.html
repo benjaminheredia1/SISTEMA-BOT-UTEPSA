@@ -1,0 +1,10 @@
+{% extends 'admin/main.html' %} {% block body %}
+
+<div class="flex">
+  <div>{% include 'admin/nav_side.html'%}</div>
+  <div>{%include 'admin/dashboard/dashboard-data.html'%}</div>
+</div>
+
+{% endblock %} {% block scripts%}
+<div>{%include 'admin/dashboard/dashboard-script.html'%}</div>
+{% endblock%}

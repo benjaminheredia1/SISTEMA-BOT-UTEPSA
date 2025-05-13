@@ -1,0 +1,30 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("graficoEstadisticas").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Lun", "Mar", "Mié", "Jue", "Vie"],
+        datasets: [
+          {
+            label: "Visitas",
+            data: [20, 40, 50, 80, 60],
+            borderColor: "#3B82F6",
+            backgroundColor: "rgba(59, 130, 246, 0.1)",
+            fill: true,
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  });
+</script>

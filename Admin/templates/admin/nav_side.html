@@ -1,0 +1,168 @@
+<div
+  class="flex flex-col min-h-screen w-72 bg-gray-50 border-r border-gray-200 px-6 py-8 shadow-sm text-gray-800"
+  style="font-family: 'Urbanist', sans-serif"
+  id="side_nav"
+  x-data="{
+    navegacion: localStorage.getItem('navegacion') === 'true',
+    bot: localStorage.getItem('bot') === 'true',
+    gestion: localStorage.getItem('gestion') === 'true',
+    tareas: localStorage.getItem('tareas') === 'true',
+    toggleState(state) {
+      this[state] = !this[state];
+      localStorage.setItem(state, this[state]);
+    }
+  }"
+  x-init="
+    $watch('navegacion', value => localStorage.setItem('navegacion', value));
+    $watch('bot', value => localStorage.setItem('bot', value));
+    $watch('gestion', value => localStorage.setItem('gestion', value));
+    $watch('tareas', value => localStorage.setItem('tareas', value));
+  "
+>
+  <!-- Logo -->
+  <div class="mb-10">
+    <div class="flex items-center space-x-3">
+      <h1 class="text-2xl font-bold tracking-tight">Utepsa</h1>
+    </div>
+  </div>
+
+  <!-- Usuario -->
+  <div class="mb-6">
+    <p class="text-xs text-gray-400 uppercase tracking-wide">Sesión</p>
+    <p class="text-base font-medium text-gray-700 mt-1">Nombre del Usuario</p>
+  </div>
+
+  <!-- Navegación principal -->
+  <div class="mb-8">
+    <p
+      class="text-xs text-gray-400 uppercase tracking-wide mb-3"
+      @click="toggleState('navegacion')"
+    >
+      Navegación
+    </p>
+    <nav x-show="navegacion" class="flex flex-col gap-1">
+      <a
+        href="{% url 'dashboard' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/dashboard/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Dashboard
+      </a>
+      <a
+        href="{% url 'usuarios' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/usuarios/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Usuarios
+      </a>
+      <a
+        href="{% url 'estudiantes' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/estudiantes/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Estudiantes
+      </a>
+      <a
+        href="{% url 'materias' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/materias/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Materias
+      </a>
+      <a
+        href="{% url 'docentes' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/docentes/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Docentes
+      </a>
+    </nav>
+  </div>
+
+  <!-- Bot Telegram -->
+  <div class="pb-8">
+    <p
+      class="text-xs text-gray-400 uppercase tracking-wide mb-3"
+      @click="toggleState('bot')"
+    >
+      Bot Telegram
+    </p>
+    <nav x-show="bot" class="flex flex-col gap-1">
+      <a
+        href="{% url 'addbot' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/addbot/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Gestion BOT
+      </a>
+      <a
+        href="{% url 'mensajes_bot' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/mensajes_bot/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Mensajes
+      </a>
+      <a
+        href="{% url 'resumen' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/resumen/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Resumen
+      </a>
+    </nav>
+  </div>
+
+  <!-- Gestión -->
+  <div class="mb-8">
+    <p
+      class="text-xs text-gray-400 uppercase tracking-wide mb-3"
+      @click="toggleState('gestion')"
+    >
+      Gestión
+    </p>
+    <nav x-show="gestion" class="flex flex-col gap-1">
+      <a
+        href="{% url 'mensajes' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/mensajes/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Mensajes
+      </a>
+      <a
+        href="{% url 'reportes' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/reportes/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Reportes
+      </a>
+    </nav>
+  </div>
+
+  <!-- Tareas -->
+  <div>
+    <p
+      class="text-xs text-gray-400 uppercase tracking-wide mb-3"
+      @click="toggleState('tareas')"
+    >
+      Tareas
+    </p>
+    <nav x-show="tareas" class="flex flex-col gap-1">
+      <a
+        href="{% url 'programar_tarea' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/programar_tarea/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Programar tarea
+      </a>
+      <a
+        href="{% url 'tareas_programadas' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/tareas_programadas/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Tareas programadas
+      </a>
+      <a
+        href="{% url 'anuncios_programados' %}"
+        class="px-4 py-2 rounded-md transition {% if request.path == '/admin/anuncios_programados/' %} bg-blue-50 border-l-4 border-blue-600 text-blue-700 font-semibold {% else %} hover:bg-gray-100 hover:text-blue-600 {% endif %}"
+      >
+        Anuncios programados
+      </a>
+    </nav>
+  </div>
+</div>
+
+<style>
+  #side_nav {
+    p {
+      cursor: pointer;
+    }
+  }
+</style>

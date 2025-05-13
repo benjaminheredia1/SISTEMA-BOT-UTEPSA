@@ -1,0 +1,115 @@
+<div
+  class="flex min-h-screen max-h-screen h-screen text-gray-800"
+  style="font-family: 'Urbanist', sans-serif"
+>
+  <!-- Panel principal de mensajes -->
+  <div class="w-2/3 bg-gray-50 border-r border-gray-200 px-6 py-8 shadow-sm">
+    <div class="mb-10">
+      <h1 class="text-2xl font-bold tracking-tight">Mensajes del Bot 🤖</h1>
+    </div>
+
+    <!-- Buscador -->
+    <div class="mb-6">
+      <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+        Buscar por consulta
+      </p>
+      <form action="{%url 'mensajes_search' %}" method="GET">
+        {% csrf_token%}
+        <input
+          name="mensaje"
+          type="text"
+          placeholder="Buscar mensaje..."
+          class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        />
+      </form>
+    </div>
+
+    <!-- Lista de mensajes -->
+    <div class="space-y-4 overflow-y-scroll max-h-130">
+      {% for mensaje in mensajes%}
+      <div
+        class="p-4 border border-gray-200 rounded-md bg-white shadow-sm hover:shadow"
+      >
+        <p class="text-sm font-semibold">Consulta:</p>
+        <p class="text-sm text-gray-600">{{mensaje.Consulta}}</p>
+        <p class="text-sm font-semibold mt-2">Respuesta:</p>
+        <p class="text-sm text-gray-600">{{mensaje.Respuesta}}</p>
+        <p class="text-xs text-gray-400 mt-2">
+          Usuario: <span class="text-gray-600">Juan Pérez</span> | Fecha:
+          <span class="text-gray-600">2025-05-12</span>
+        </p>
+      </div>
+      {% endfor%}
+    </div>
+  </div>
+
+  <!-- Panel lateral de filtros y recomendaciones -->
+  <div class="w-1/2 bg-white px-6 py-8 shadow-sm border-l border-gray-100">
+    <!-- Filtros -->
+    <h2 class="text-xl font-semibold mb-6">Filtros de tiempo 🕒</h2>
+
+    <div class="mb-5">
+      <label class="block text-sm text-gray-700 font-medium mb-1">Desde</label>
+      <input
+        type="date"
+        class="w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+      />
+    </div>
+
+    <div class="mb-5">
+      <label class="block text-sm text-gray-700 font-medium mb-1">Hasta</label>
+      <input
+        type="date"
+        class="w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+      />
+    </div>
+
+    <!-- Preselecciones -->
+    <div class="mb-6">
+      <p class="text-sm font-semibold mb-2">Seleccionar periodo</p>
+      <div class="flex flex-wrap gap-2">
+        <button
+          class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-sm hover:bg-blue-200"
+        >
+          Hoy
+        </button>
+        <button
+          class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-sm hover:bg-blue-200"
+        >
+          Semana
+        </button>
+        <button
+          class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-sm hover:bg-blue-200"
+        >
+          Mes
+        </button>
+        <button
+          class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-sm hover:bg-blue-200"
+        >
+          Año
+        </button>
+      </div>
+    </div>
+
+    <!-- Botón para aplicar -->
+    <div class="mt-4 mb-6">
+      <button
+        class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+      >
+        Generar resumen 📊
+      </button>
+    </div>
+
+    <!-- Recomendaciones IA -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold mb-3">Recomendaciones IA 🧠</h3>
+      <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+        <li>Crear un acceso rápido a horarios desde el bot 📆</li>
+        <li>Recordar fechas de inscripción de materias 📌</li>
+        <li>Ofrecer respuestas con links útiles 🔗</li>
+        <li>Agregar botón para reportar objetos perdidos 🧳</li>
+        <li>Enviar mensajes proactivos sobre eventos 🎉</li>
+      </ul>
+    </div>
+  </div>
+</div>

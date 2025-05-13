@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Admin Utepsa</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="
+https://cdn.jsdelivr.net/npm/sass@1.88.0/sass.dart.min.js
+"></script>
+    <!-- sass-->
+    <script src="
+https://cdn.jsdelivr.net/npm/sass@1.88.0/sass.dart.min.js
+"></script>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+  <body>
+    {% block body%} {% endblock %} {%block scripts%} {%endblock%}
+  </body>
+  <style>
+    body {
+      font-family: "Urbanist", sans-serif;
+    }
+  </style>
+</html>
